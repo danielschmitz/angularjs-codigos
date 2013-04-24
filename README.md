@@ -1,4 +1,4 @@
-livro-angular
+Livro AngularJS na prática
 =============
 
-Código fonte do livro Angular JS na prática
+Este é o código fonte do livro AngularJS na prática. 
