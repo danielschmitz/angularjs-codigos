@@ -1,0 +1,17 @@
+<html ng-app>
+  <head>
+    <script src="http://code.angularjs.org/1.1.4/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div ng-controller="appController">
+      <button ng-click="getData()">Get Data</button>
+      <h2 ng-show="fruits.length>0">Fruits</h2>
+      <ul>
+          <li ng-repeat="fruit in fruits" >
+             {{fruit.id}} - {{fruit.name}} ({{fruit.color}})
+          </li>
+      </ul>
+    </div>
+  </body>
+</html>
