@@ -2,5 +2,5 @@
 
 function mainController($scope)
 {
-	$scope.title = "";
+	$scope.title = "Hello World";
 }
