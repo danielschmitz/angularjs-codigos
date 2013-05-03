@@ -1,0 +1,178 @@
+DROP SCHEMA IF EXISTS `vendas` ;
+CREATE SCHEMA IF NOT EXISTS `vendas` DEFAULT CHARACTER SET utf8 ;
+USE `vendas` ;
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Usuarios`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Usuarios` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Usuarios` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(100) NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
+  `login` VARCHAR(45) NOT NULL ,
+  `senha` VARCHAR(45) NOT NULL ,
+  `lastLogin` DATETIME NULL ,
+  `lastIp` VARCHAR(45) NULL ,
+  `tipo` CHAR(1) NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+INSERT INTO `vendas`.`Usuarios` (`nome`, `email`, `login`, `senha`, `tipo`) VALUES ('a', 'a', 'a', 'a', 'a');
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Clientes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Clientes` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Clientes` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `cpf` VARCHAR(11) NULL ,
+  `endereco` VARCHAR(255) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_Clientes_Usuarios_idx` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_Clientes_Usuarios`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `vendas`.`Usuarios` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Fornecedores`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Fornecedores` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Fornecedores` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NULL ,
+  `cnpj` VARCHAR(45) NULL ,
+  `endereco` VARCHAR(255) NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Vendedores`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Vendedores` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Vendedores` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `cpf` VARCHAR(11) NULL ,
+  `matricula` VARCHAR(45) NULL ,
+  `dataContratacao` VARCHAR(45) NULL ,
+  `ativo` TINYINT NULL ,
+  `endereco` VARCHAR(255) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_Clientes_Usuarios_idx` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_Clientes_Usuarios0`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `vendas`.`Usuarios` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Categorias`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Categorias` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Categorias` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Produtos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Produtos` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Produtos` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `idCategoria` INT NOT NULL ,
+  `idFornecedor` INT NOT NULL ,
+  `nome` VARCHAR(45) NOT NULL ,
+  `quantidade` INT NULL ,
+  `quantidadeMinima` INT NULL ,
+  `precoUnitario` DECIMAL(10,2) NULL ,
+  `descricao` VARCHAR(245) NULL ,
+  `foto` BLOB NULL ,
+  `ativo` TINYINT NULL ,
+  `codigo` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_Produtos_Categorias1_idx` (`idCategoria` ASC) ,
+  INDEX `fk_Produtos_Fornecedores1_idx` (`idFornecedor` ASC) ,
+  CONSTRAINT `fk_Produtos_Categorias1`
+    FOREIGN KEY (`idCategoria` )
+    REFERENCES `vendas`.`Categorias` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Produtos_Fornecedores1`
+    FOREIGN KEY (`idFornecedor` )
+    REFERENCES `vendas`.`Fornecedores` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`Vendas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`Vendas` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`Vendas` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `idCliente` INT NOT NULL ,
+  `idVendedor` INT NOT NULL ,
+  `idTransportadora` INT NULL ,
+  `dataVenda` DATETIME NULL ,
+  `dataEnvio` DATETIME NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_Vendas_Clientes1_idx` (`idCliente` ASC) ,
+  INDEX `fk_Vendas_Vendedores1_idx` (`idVendedor` ASC) ,
+  CONSTRAINT `fk_Vendas_Clientes1`
+    FOREIGN KEY (`idCliente` )
+    REFERENCES `vendas`.`Clientes` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Vendas_Vendedores1`
+    FOREIGN KEY (`idVendedor` )
+    REFERENCES `vendas`.`Vendedores` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vendas`.`itensVenda`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `vendas`.`itensVenda` ;
+
+CREATE  TABLE IF NOT EXISTS `vendas`.`itensVenda` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `idVenda` INT NOT NULL ,
+  `idProduto` INT NOT NULL ,
+  `quantidade` INT NOT NULL ,
+  `precoUnitario` DECIMAL(10,2) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_itensVenda_Vendas1_idx` (`idVenda` ASC) ,
+  INDEX `fk_itensVenda_Produtos1_idx` (`idProduto` ASC) ,
+  CONSTRAINT `fk_itensVenda_Vendas1`
+    FOREIGN KEY (`idVenda` )
+    REFERENCES `vendas`.`Vendas` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_itensVenda_Produtos1`
+    FOREIGN KEY (`idProduto` )
+    REFERENCES `vendas`.`Produtos` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
