@@ -1,6 +1,6 @@
 
 
-function mainController($scope)
+function clientesController($scope)
 {
 	$scope.title = "Hello World";
 }
