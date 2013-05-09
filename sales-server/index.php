@@ -7,7 +7,7 @@ require 'DB.php';
 require 'Slim/Slim.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim(array(
-    'debug' => true
+    'debug' => false
         ));
 
 $app->contentType("application/json");
