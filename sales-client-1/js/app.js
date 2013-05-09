@@ -9,5 +9,5 @@ $app.config(function($routeProvider){
 });
 
 $app.run(function($rootScope){
-	$rootScope.rootServerUrl = "http://localhost/";
+	$rootScope.rootServerUrl = "http://localhost/sales-server";
 });
