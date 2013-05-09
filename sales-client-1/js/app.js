@@ -6,13 +6,6 @@ $app.config(function($routeProvider,$httpProvider){
 	when('/clientes',{templateUrl:'view/clientes/main.html',controller:clientesController}).
 	otherwise({redirectTo:'/'});
 
-	//REQUEST interceptor
-	var spinnerFunction = function (data, headersGetter,url) {
-            		console.log(data);
-            		return data;
-        	};
-        	$httpProvider.defaults.transformRequest.push(spinnerFunction);
-
 	//RESPONSE interceptor
 	$httpProvider.responseInterceptors.push(function($q,$rootScope) {
 		return function(promise) {
