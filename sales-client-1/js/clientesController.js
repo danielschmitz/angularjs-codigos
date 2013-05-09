@@ -12,7 +12,6 @@ function clientesController($scope,$http)
 		$scope.showLoader();
 		$http.get($scope.rootServerUrl + "/customers").success(function(data){
 			$scope.rows = data;			
-			$scope.hideLoader();
 		});
 	}
 
