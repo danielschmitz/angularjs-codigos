@@ -1,3 +1,6 @@
+
+SERVER_URL = "http://localhost/sales-server";
+
 $app = angular.module('app',['ngResource']);
 
 $app.config(function($routeProvider,$httpProvider){
@@ -21,8 +24,13 @@ $app.config(function($routeProvider,$httpProvider){
 			      console.error($data);
 			      if ($error && $error.text)
 			      	alert("ERROR: " + $error.text);
-			      else
-			      	alert("ERROR! See log console");
+			      else{
+			      	if (response.status=404)
+			      		alert("Erro ao acessar servidor. Página não encontrada. Veja o log de erros para maiores detalhes");
+			      	else
+			      		alert("ERROR! See log console");
+			      }
+
 
 			      return $q.reject(response);
 			  });
@@ -32,7 +40,7 @@ $app.config(function($routeProvider,$httpProvider){
 
 $app.run(function($rootScope){
 
-	$rootScope.rootServerUrl = "http://localhost/sales-server";
+	
 
 	$rootScope.showLoaderFlag = false;
 	
@@ -43,8 +51,8 @@ $app.run(function($rootScope){
 		$rootScope.showLoaderFlag=false;
 	}
 
-	$rootScope.showHttpError = function(data){
-		//alert(data.error.text);
+	$rootScope.server=function(url){
+		return SERVER_URL + url;
 	}
 
 });

@@ -10,7 +10,7 @@ function clientesController($scope,$http)
 
 	$scope.loadAll = function(){
 		$scope.showLoader();
-		$http.get($scope.rootServerUrl + "/customers").success(function(data){
+		$http.get($scope.server("/customers")).success(function(data){
 			$scope.rows = data;			
 		});
 	}
