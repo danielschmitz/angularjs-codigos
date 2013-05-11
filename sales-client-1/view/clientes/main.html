@@ -6,16 +6,18 @@
 				<th width="10%">Id</th>
 				<th>Nome</th>
 				<th>Fone</th>
-				<th width="10"></th>
+				<!--<th width="10"></th>-->
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in rows">
+			<tr ng-repeat="row in rows | startFrom: currentPage*pageSize| limitTo: pageSize">
 				<td>{{row.CustomerID}}</td>
 				<td><a href='#/customer/{{row.CustomerID}}'>{{row.ContactName}}</a></td>
 				<td>{{row.Phone}}</td>
 			</tr>
 		</tbody>
 	</table>
-
+	
+	<button class="btn btn-primary" ng-click="currentPage=currentPage-1" ng-disabled="currentPage == 0" >&larr; Voltar</button>
+	<button class="btn btn-primary pull-right" ng-click="currentPage=currentPage+1" ng-disabled="currentPage >= rows.length/pageSize - 1">Avançar &rarr;</button>
 </div>
