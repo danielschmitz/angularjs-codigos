@@ -11,6 +11,7 @@ $app.config(function($routeProvider,$httpProvider){
 	$routeProvider.
 	when('/',{templateUrl:'view/main.html'}).
 	when('/clientes',{templateUrl:'view/clientes/main.html',controller:clientesController}).
+	when('/clientes/new',{templateUrl:'view/clientes/update.html',controller:clientesController}).
 	when('/cliente/:id',{templateUrl:'view/clientes/update.html',controller:clientesController}).
 	otherwise({redirectTo:'/'});
 
