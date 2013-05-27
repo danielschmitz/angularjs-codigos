@@ -12,10 +12,6 @@ function clientesController($scope,$http)
 		return Math.ceil($scope.rows.length/$scope.pageSize);                
 	}
 
-	$scope.init = function(){
-		$scope.loadAll();
-	}
-
 	$scope.loadAll = function(){
 		$scope.showLoader();
 		$http.get($scope.server("/customers")).success(function(data){
@@ -23,7 +19,4 @@ function clientesController($scope,$http)
 		});
 	}
 
-
-
-	$scope.init();
 }

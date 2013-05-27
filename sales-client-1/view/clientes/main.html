@@ -1,5 +1,5 @@
 <h2>Clientes</h2>
-<div ng-controller="clientesController">
+<div ng-controller="clientesController" ng-init="loadAll()">
 	<table id="tableData" class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>
@@ -12,7 +12,7 @@
 		<tbody>
 			<tr ng-repeat="row in rows | startFrom: currentPage*pageSize| limitTo: pageSize">
 				<td>{{row.CustomerID}}</td>
-				<td><a href='#/customer/{{row.CustomerID}}'>{{row.ContactName}}</a></td>
+				<td><a href='#/cliente/{{row.CustomerID}}'>{{row.ContactName}}</a></td>
 				<td>{{row.Phone}}</td>
 			</tr>
 		</tbody>
