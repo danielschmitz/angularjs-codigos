@@ -46,7 +46,7 @@ $app.run(function($rootScope){
 
 	//Uma flag que define se o ícone de acesso ao servidor deve estar ativado
 	$rootScope.showLoaderFlag = false;
-	
+
 	//Força que o ícone de acesso ao servidor seja ativado
 	$rootScope.showLoader=function(){
 		$rootScope.showLoaderFlag=true;
@@ -57,7 +57,7 @@ $app.run(function($rootScope){
 	}
 
 	//Método que retorna a URL completa de acesso ao servidor. 
-	// Evita usar concatena~]ap
+	// Evita usar concatenação
 	$rootScope.server=function(url){
 		return SERVER_URL + url;
 	}
