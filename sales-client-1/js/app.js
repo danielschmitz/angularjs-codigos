@@ -1,9 +1,8 @@
-
 //URL de acesso ao servidor RESTful
 SERVER_URL = "http://localhost/sales-server";
 
 //Criação ao $app que é o modulo que representa toda a aplicação
-$app = angular.module('app',['ngResource']);
+$app = angular.module('app',[]);
 
 $app.config(function($routeProvider,$httpProvider){
 
