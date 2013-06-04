@@ -1,29 +1,29 @@
 <h2>Cliente</h2>
-<div ng-controller="clientesController" ng-init="loadRow()">
-	<form ng-submit="save()" class="form-horizontal" ng-show="row!=null">
-		<div class="control-group">
-			<label class="control-label">ID:</label>
-			<div class="controls" >
-				<input type="text" ng-model="row.CustomerID"  class="input-small" required ng-disabled="row.isUpdate" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Nome:</label>
-			<div class="controls">
-				<input type="text" ng-model="row.ContactName" class="input-xxlarge" />
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Telefone:</label>
-			<div class="controls">
-				<input type="text" ng-model="row.Phone"/>
-			</div>
-		</div>
-		
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Salvar</button>
-			<a href="#/clientes" class="btn">Voltar</a>
-		</div>
-	</form>
-	<button class="btn btn-danger pull-right" ng-click="del()">Apagar</button>
+<div ng-init="loadRow()">
+    <form ng-submit="save()" class="form-horizontal" ng-show="row!=null">
+        <div class="control-group">
+            <label class="control-label">ID:</label>
+            <div class="controls" >
+                <input type="text" ng-model="row.CustomerID"  class="input-small" required ng-disabled="row.isUpdate" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Nome:</label>
+            <div class="controls">
+                <input type="text" ng-model="row.ContactName" class="input-xxlarge" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Telefone:</label>
+            <div class="controls">
+                <input type="text" ng-model="row.Phone"/>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="#/clientes" class="btn">Voltar</a>
+        </div>
+    </form>
+    <button class="btn btn-danger pull-right" ng-click="del()">Apagar</button>
 </div>
