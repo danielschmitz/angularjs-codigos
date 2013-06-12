@@ -4,5 +4,13 @@
 	<div>
 		<a href="#" ng-click="new()" class="pull-right ">Novo</a>
 	</div>
+
+	<div class="span3">
+
+		<ul class="nav nav-tabs nav-stacked">
+			<li ng-repeat="row in rows"><a ng-click="loadRow(row.EmployeeID)">{{row.LastName}}, {{row.FirstName}}</a></li>
+		</ul>
+	</div>
+	<div class="span7">Formulário</div>
 	
 </div>

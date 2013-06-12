@@ -1,15 +1,21 @@
 
-function funcionariosController(){
+function funcionariosController($scope,$http,$routeParams,$location){
 
-	//lista de clientes
+	//lista de funcionarios
 	$scope.rows = null;
 
-	//um cliente 
+	//um funcionario
 	$scope.row = null;
 
-	//Pagination
-	$scope.currentPage = 0;
-	$scope.pageSize = 15;
+	$scope.loadAll = function(){
+		$scope.showLoader();
+		$http.get($scope.server("/employees")).success(function(data){
+			$scope.rows = data;			
+		});
+	}
 
+	$scope.loadRow = function(id){
+		
+	}
 
 }

@@ -23,6 +23,7 @@ function formatJson($obj)
 
 //Includes
 include("customer.php");
+include("employee.php");
 
 
 $app->run();
