@@ -10,42 +10,41 @@ $app->get("/employees",function (){
 
 $app->get("/employee/:id",function ($id){
 
-	$sql = "SELECT CustomerID,ContactName,Phone FROM customers WHERE CustomerID='$id'";
+	$sql = "SELECT EmployeeID,FirstName,LastName,HomePhone FROM employees WHERE EmployeeID=?";
 	$stmt = DB::prepare($sql);
-	$stmt->execute();
+	$stmt->execute(array($id));
 	formatJson($stmt->fetch());
 });
 
-$app->post("/employee/:id",function ($id){
+$app->post("/employee/",function (){
 
 	$data =json_decode(\Slim\Slim::getInstance()->request()->getBody());
 
-	if ($data->isUpdate)
-	{
-		$sql = "UPDATE customers SET ContactName=?,Phone=? WHERE CustomerID=?";
+	if ($data->EmployeeID!=0){
+		$sql = "UPDATE employees SET FirstName=?,LastName=?,HomePhone=? WHERE EmployeeID=?";
 		$stmt = DB::prepare($sql);
 		$stmt->execute(array(
-			$data->ContactName,
-			$data->Phone,
-			$data->CustomerID
+			$data->FirstName,
+			$data->LastName,
+			$data->HomePhone,
+			$data->EmployeeID
 			)
 		);
 	}
 	else
 	{
-		$sql = "INSERT INTO customers (CustomerID,ContactName,Phone)  VALUES (?,?,?)";
+		$sql = "INSERT INTO employees (FirstName,LastName,HomePhone)  VALUES (?,?,?)";
 		$stmt = DB::prepare($sql);
 		$stmt->execute(array(
-			$data->CustomerID,
-			$data->ContactName,
-			$data->Phone
+			$data->FirstName,
+			$data->LastName,
+			$data->HomePhone
 			)
 		);
-		
+		$data->EmployeeID = DB::lastInsertId();
 	}
 
 	formatJson($data);
-
 });
 
 $app->delete("/employee/:id",function ($id){
@@ -54,6 +53,8 @@ $app->delete("/employee/:id",function ($id){
 		$stmt->execute(array($id));
 	formatJson(true);
 });
+
+
 
 
 
