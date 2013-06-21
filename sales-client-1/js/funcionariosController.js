@@ -37,8 +37,8 @@ function funcionariosController($scope,$http,$routeParams,$location){
 			LastName:"",
 			HomePhone:""
 		}
-
-
 	}
+
+	
 
 }

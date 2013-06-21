@@ -1,8 +1,6 @@
 <h2>Funcionários</h2>
 <button class="btn btn-primary pull-right" ng-click="new()">Novo</button>
 <div ng-init="loadAll()">
-
-
 	<div class="span3">
 		<ul class="nav nav-tabs nav-stacked">
 			<li ng-repeat="row in rows"><a ng-click="loadRow(row.EmployeeID)">{{row.LastName}}, {{row.FirstName}}</a></li>
@@ -35,6 +33,5 @@
 				<button type="submit" class="btn btn-primary">Salvar</button>
 			</div>
 		</form>
-	</div>
-	
+	</div>	
 </div>
