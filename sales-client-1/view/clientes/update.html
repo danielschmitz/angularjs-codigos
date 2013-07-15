@@ -1,10 +1,11 @@
 <h2>Cliente</h2>
 <div ng-init="loadRow()">
-    <form ng-submit="save()" class="form-horizontal" ng-show="row!=null">
+    <form name="form" ng-submit="save()" class="form-horizontal" ng-show="row!=null">
         <div class="control-group">
             <label class="control-label">ID:</label>
             <div class="controls" >
-                <input type="text" ng-model="row.CustomerID"  class="input-small" required ng-disabled="row.isUpdate" />
+                <input name="CustomerID" type="text" ng-model="row.CustomerID"  class="input-small" required ng-disabled="row.isUpdate" />
+                <span class="help-inline text-error" ng-show="form.CustomerID.$dirty && form.CustomerID.$invalid">Campo obrigatório</span>
             </div>
         </div>
         <div class="control-group">
@@ -17,6 +18,17 @@
             <label class="control-label">Telefone:</label>
             <div class="controls">
                 <input type="text" ng-model="row.Phone"/>
+            </div>
+        </div>
+
+          <div class="control-group">
+            <label class="control-label">Email:</label>
+            <div class="controls">
+                <input name="Email" type="email" ng-model="row.Email" required/>
+                 <span class="help-inline text-error" ng-show="form.Email.$dirty && form.Email.$invalid">
+                    <span ng-show="form.Email.$error.required">Campo obrigatório</span>
+                     <span ng-show="form.Email.$error.email">Email inválido</span>
+                </span>
             </div>
         </div>
         
