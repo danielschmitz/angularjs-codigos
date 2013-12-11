@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>AngularJS na pratica - SOCKET.IO por Douglas Lira</title>
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+
+<script>
+
+var socket = io.connect('http://localhost:8000');
+ socket.on('recpetor',function(texto){
+ alert(texto);
+});
+
+ function enviar(texto) {
+    socket.emit('emissor', texto);
+}
+
+</script>
+</head>
+
+<body>
+    <input type="button" onclick="enviar('Olá mundo!');" value="Enviar">
+</body>
+
+</html>
