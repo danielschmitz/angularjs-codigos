@@ -1,8 +1,9 @@
-$app = angular.module('app',['ngResource']);
+var $app = angular.module('app',['ngResource']);
 
-function phoneController($scope,$resource){
 
-	Phone = $resource("/phones/:phoneId");
+$app.controller("phoneController",function ($scope,$resource){
+
+	var Phone = $resource("/phones/:phoneId");
 
 	$scope.getPhoneById = function(){
 		Phone.get({phoneId:$scope.idPhone},function(data){
@@ -27,4 +28,4 @@ function phoneController($scope,$resource){
 		Phone.delete({phoneId:10});
 	}
 
-}
+});

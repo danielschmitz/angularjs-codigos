@@ -1,5 +1,6 @@
-function appController($scope,$http)
-{
+var app = angular.module('app',[]);
+
+app.controller('appController',function ($scope,$http){
 	$scope.fruits = Array();
 
 	$scope.getData = function(){
@@ -11,4 +12,4 @@ function appController($scope,$http)
 			console.log(data);
 		});
 	}
-}
+});
