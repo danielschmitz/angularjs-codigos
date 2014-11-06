@@ -1,6 +1,5 @@
 var $app = angular.module('app',['ngResource']);
 
-
 $app.controller("phoneController",function ($scope,$resource){
 
 	var Phone = $resource("/phones/:phoneId");

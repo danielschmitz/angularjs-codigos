@@ -1,23 +1,26 @@
 //URL de acesso ao servidor RESTful
-SERVER_URL = "http://localhost/sales-server";
+//SERVER_URL = "http://localhost/sales-server";
+
+//Novo server_url para o cloud9
+SERVER_URL = "https://demo-project-c9-danielschmitz.c9.io/angular/livro-angular/sales-server";
 
 //Criação ao $app que é o modulo que representa toda a aplicação
-$app = angular.module('app',[]);
+var $app = angular.module('app',['ngRoute']);
 
-$app.config(function($routeProvider,$httpProvider){
+$app.config(['$routeProvider','$httpProvider',function($routeProvider,$httpProvider){
 
 	//Configura o route provider
 	$routeProvider.
 	when('/',{templateUrl:'view/main.html'}).
-	when('/clientes',{templateUrl:'view/clientes/main.html',controller:clientesController}).
-	when('/clientes/new',{templateUrl:'view/clientes/update.html',controller:clientesController}).
-	when('/cliente/:id',{templateUrl:'view/clientes/update.html',controller:clientesController}).
-	when('/funcionarios',{templateUrl:'view/funcionarios/main.html',controller:funcionariosController}).
+	when('/clientes',{templateUrl:'view/clientes/main.html',controller:'clientesController'}).
+	when('/clientes/new',{templateUrl:'view/clientes/update.html',controller:'clientesController'}).
+	when('/cliente/:id',{templateUrl:'view/clientes/update.html',controller:'clientesController'}).
+	when('/funcionarios',{templateUrl:'view/funcionarios/main.html',controller:'funcionariosController'}).
 	otherwise({redirectTo:'/'});
 
 	//configura o RESPONSE interceptor, usado para exibir o ícone de acesso ao servidor
 	// e a exibir uma mensagem de erro caso o servidor retorne algum erro
-	$httpProvider.responseInterceptors.push(function($q,$rootScope) {
+	$httpProvider.interceptors.push(function($q,$rootScope) {
 		return function(promise) {
 			//Always disable loader
 			$rootScope.hideLoader();
@@ -41,9 +44,9 @@ $app.config(function($routeProvider,$httpProvider){
 			  });
 		}
 	});
-});	
+}]);	
 
-$app.run(function($rootScope){
+$app.run(['$rootScope',function($rootScope){
 
 	//Uma flag que define se o ícone de acesso ao servidor deve estar ativado
 	$rootScope.showLoaderFlag = false;
@@ -63,7 +66,7 @@ $app.run(function($rootScope){
 		return SERVER_URL + url;
 	}
 
-});
+}]);
 
 //We already have a limitTo filter built-in to angular,
 //let's make a startFrom filter

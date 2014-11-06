@@ -1,5 +1,7 @@
 
-function funcionariosController($scope,$http,$routeParams,$location){
+
+//function funcionariosController($scope,$http,$routeParams,$location){
+$app.controller('funcionariosController',function ($scope,$http,$routeParams,$location) {
 
 	//lista de funcionarios
 	$scope.rows = null;
@@ -41,4 +43,4 @@ function funcionariosController($scope,$http,$routeParams,$location){
 
 	
 
-}
+});

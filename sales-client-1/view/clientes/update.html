@@ -1,84 +1,61 @@
 <h2>Cliente</h2>
 <div ng-init="loadRow()">
-    <form name="form" ng-submit="save()" class="form-horizontal" ng-show="row!=null">
-
-       <div class="tabbable"> 
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Formulário</a></li>
-            <li><a href="#tab2" data-toggle="tab">Exemplos validação</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              <p>
-                  <div class="control-group">
-                    <label class="control-label">ID:</label>
-                    <div class="controls" >
-                        <input name="CustomerID" type="text" ng-model="row.CustomerID"  class="input-small" required ng-disabled="row.isUpdate" />
-                        <span class="help-inline text-error" ng-show="form.CustomerID.$dirty && form.CustomerID.$invalid">Campo obrigatório</span>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Nome:</label>
-                    <div class="controls">
-                        <input name="ContactName" required type="text" ng-model="row.ContactName" class="input-xxlarge" />
-                        <span class="help-inline text-error" ng-show="form.ContactName.$dirty && form.ContactName.$invalid">Campo obrigatório</span>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Telefone:</label>
-                    <div class="controls">
-                        <input type="text" ng-model="row.Phone"/>
-                    </div>
-                </div>
-            </p>
+    <form name="form" class="form-horizontal" ng-show="row!=null">
+        <div class="control-group">
+            <label class="control-label">ID:</label>
+            <div class="controls">
+                <input name="CustomerID" type="text" ng-model="row.CustomerID" class="input-small" required ng-disabled="row.isUpdate" />
+                <span class="help-inline text-error" ng-show="form.CustomerID.$dirty && form.CustomerID.$invalid">Campo obrigatório</span>
+            </div>
         </div>
-        <div class="tab-pane" id="tab2">
-          <p>
-
-            <div class="control-group">
-                <label class="control-label">Email:</label>
-                <div class="controls">
-                    <input name="Email" type="email" ng-model="row.Email" required/>
-                    <span class="help-inline text-error" ng-show="form.Email.$dirty && form.Email.$invalid">
+        <div class="control-group">
+            <label class="control-label">Nome:</label>
+            <div class="controls">
+                <input name="ContactName" required type="text" ng-model="row.ContactName" class="input-xxlarge" />
+                <span class="help-inline text-error" ng-show="form.ContactName.$dirty && form.ContactName.$invalid">Campo obrigatório</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Telefone:</label>
+            <div class="controls">
+                <input type="text" ng-model="row.Phone" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Email:</label>
+            <div class="controls">
+                <input name="Email" type="email" ng-model="row.Email" required/>
+                <span class="help-inline text-error" ng-show="form.Email.$dirty && form.Email.$invalid">
                         <span ng-show="form.Email.$error.required">Campo obrigatório</span>
-                        <span ng-show="form.Email.$error.email">Email inválido</span>
-                    </span>
-                </div>
+                <span ng-show="form.Email.$error.email">Email inválido</span>
+                </span>
             </div>
-
-            <div class="control-group">
-                <label class="control-label">Url:</label>
-                <div class="controls">
-                    <input name="Url" type="url" ng-model="row.Url" ng-pattern="/https?://.+/"/>
-                    <span class="help-inline text-error" ng-show="form.Url.$dirty && form.Url.$invalid">
+        </div>
+        <div class="control-group">
+            <label class="control-label">Url:</label>
+            <div class="controls">
+                <input name="Url" type="url" ng-model="row.Url" ng-pattern="/https?://.+/" />
+                <span class="help-inline text-error" ng-show="form.Url.$dirty && form.Url.$invalid">
                         <span>Url inválida</span>
-                    </span>
-                </div>
+                </span>
             </div>
-
-            <div class="control-group">
-                <label class="control-label">Data simples:</label>
-                <div class="controls">
-                    <input name="DataSimples" ng-model="row.DataSimples" type="text" ng-pattern="/\d{1,2}/\d{1,2}/\d{4}/"/>
-                    <span class="help-inline text-error" ng-show="form.DataSimples.$dirty && form.DataSimples.$invalid">
+        </div>
+        <div class="control-group">
+            <label class="control-label">Data simples:</label>
+            <div class="controls">
+                <input name="DataSimples" ng-model="row.DataSimples" type="text" ng-pattern="/\d{1,2}/\d{1,2}/\d{4}/" />
+                <span class="help-inline text-error" ng-show="form.DataSimples.$dirty && form.DataSimples.$invalid">
                         <span>Data inválida</span>
-                    </span>
-                </div>
+                </span>
             </div>
+        </div>
 
-        </p>
-    </div>
+
 </div>
 </div>
-
-
-
-
-
-
 
 <div class="form-actions">
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary" ng-click="save()" ng-Disabled="form.$invalid">Salvar</button>
     <a href="#/clientes" class="btn">Voltar</a>
 </div>
 </form>
