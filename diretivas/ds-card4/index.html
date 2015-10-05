@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Hello World</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="app.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        
+    </head>
+    
+    <body ng-controller="appController">
+      
+      <div class="container">
+        
+        <br/>
+      
+        <form class="form-inline">
+        <div class="form-group">
+          <label for="inputName">Name</label>
+          <input type="text" class="form-control" id="inputName" placeholder="Jane Doe" ng-model='user.name'>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="jane.doe@example.com" ng-model='user.email'>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="clickAdd()">Add</button>
+      </form>
+        
+        <br/><br/>
+        
+        <ds-card ng-repeat="user in users" name='{{user.name}}' email='{{user.email}}'></ds-card>
+        
+      
+      </div>
+
+    </body>
+</html>
