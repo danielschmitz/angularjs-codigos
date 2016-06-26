@@ -1,0 +1,24 @@
+{
+  "name": "test-browserify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -e src/index.js -o dist/build.js",
+    "build-hmr": "watchify -vd -p browserify-hmr -e src/index.js -o dist/build.js",
+    "server": "live-server",
+    "dev": "npm-run-all --parallel build-hmr server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "browserify-hmr": "^0.3.1",
+    "live-server": "^1.0.0",
+    "npm-run-all": "^2.2.2",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.7"
+  }
+}
